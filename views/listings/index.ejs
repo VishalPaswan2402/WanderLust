@@ -1,0 +1,117 @@
+<%=layout("/layouts/boilerplate")%>
+<%=success%>
+    <style>
+        #filters{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .filter{
+            text-align: center;
+            margin-right: 2rem;
+            margin-top: 1rem;
+            opacity: 0.5;
+            cursor: pointer;
+            width: 80px;
+            border-radius: 20px;
+            /* border: 1px solid grey; */
+            display: table;
+            align-items: center;
+            text-align: center;
+            justify-content: space-evenly;
+            box-shadow: 2px 2px 8px rgb(199, 199, 199);
+            transition: 0.5s;
+        }
+        .filter:hover{
+            opacity: 1;
+            box-shadow: 2px 2px 8px rgb(167, 166, 166);
+        }
+        .icon{
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+        .textB{
+            font-size: 0.8rem;
+        }
+        .taxInfo{
+            display: none;
+        }
+        .tax-toggle{
+            /* border: 1px solid gray; */
+            height: 3rem;
+            width: 16rem;
+            border-radius: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.65rem;
+            box-shadow: 2px 2px 8px rgb(199, 199, 199);
+            margin-top: 1.7rem;
+            opacity: 0.7;
+            transition: 0.5s;
+        }
+        .tax-toggle:hover{
+            opacity: 1;
+            box-shadow: 2px 2px 8px rgb(167, 166, 166);
+        }
+    </style>
+
+    <div id="filters">
+        <div class="filter">
+            <div><i class="fa-solid fa-fire icon"></i></div><p class="textB">Trending</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-person-shelter icon"></i></div><p class="textB">Rooms</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-key icon"></i></div><p class="textB">New</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-hotel icon"></i></div><p class="textB">Hotels</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-city icon"></i></div><p class="textB">City</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-person-skiing icon"></i></div><p class="textB">Ski-in/out</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-landmark-dome icon"></i></div><p class="textB">Domes</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-snowflake icon"></i></div><p class="textB">Artic</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-umbrella-beach icon"></i></div><p class="textB">Beachfront</p>
+        </div>
+        <div class="tax-toggle">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+              </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-3 mt-3">
+        
+        <%for(let listing of allListings){%>
+        <a href="/listings/<%=listing._id%>" class="listing-link">
+            <div class="card col listing-card">
+                <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                  <p class="card-text"><b><%=listing.title%></b><br>
+                    &#8377; <%=listing.price.toLocaleString("en-IN")%> /night
+                    <i class="taxInfo">&nbsp; &nbsp; +18% GST</i>
+                  </p>
+                </div>
+            </div>
+        </a>
+        <%}%>
+    </div>
+
+    <script>
+        let taxSwitch=document.getElementById("flexSwitchCheckDefault");
+        
+        taxSwitch.addEventListener("Click",()=>{
+            let taxInfo=document.getElementsByClassName("taxInfo");
+            console.log("taxInfo");
+        });
+    </script>
